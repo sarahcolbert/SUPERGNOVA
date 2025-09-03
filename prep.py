@@ -54,15 +54,15 @@ def prep(bfile, partition, sumstats1, sumstats2, N1, N2):
     bims = [pd.read_csv(f,
                         header=None,
                         names=['CHR', 'SNP', 'CM', 'BP', 'A1', 'A2'],
-                        delim_whitespace=True) for f in bim_files]
+                        sep=r"\s+", engine="python") for f in bim_files]
     bim = pd.concat(bims, ignore_index=True)
 
     # read in bed files
     beds = [pd.read_csv(f,
-                        delim_whitespace=True) for f in bed_files]
+                        sep=r"\s+", engine="python") for f in bed_files]
     bed = pd.concat(beds, ignore_index=True)
 
-    dfs = [pd.read_csv(file, delim_whitespace=True)
+    dfs = [pd.read_csv(file, sep=r"\s+", engine="python")
         for file in [sumstats1, sumstats2]]
 
     # rename cols
